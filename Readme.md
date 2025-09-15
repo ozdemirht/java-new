@@ -26,17 +26,17 @@ Functional Requirements
 -----------------------
 1) When the solution encounters a Filter Description Line, it should print the Filter Description as.
 ```
-Filter_Description_Response::= "A:" <Filter_Terms> "; FID=" <Filter_ID>
-<Filter_Terms> ::= <String> | <String> " " <Filter_Terms>
-<Filter_ID> ::= <Integer>
+<Filter_Description_Response> ::= "A:" <Filter_Terms> "; FID=" <Filter_ID>
+               <Filter_Terms> ::= <String> | <String> " " <Filter_Terms>
+                  <Filter_ID> ::= <Integer>
 ```
 Filter_ID: Filter identifier, starts with 1.
 
 2) When the solution encounters a Line of Log and a filter matches, 
 then it should print the following with the filter identifier of each matching filter.
 ```
-Line_Of_Log_Response ::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
-        <FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
+<Line_Of_Log_Response> ::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
+          <FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
 ```
 
 3) For QF filter to match, all the terms in the filter must be present in the given log line and comparison is case insensitive.
