@@ -47,7 +47,7 @@ Filters are represented as an [IFilter](./src/IFilter.java) interface so that di
 An example filter is implemented in the class [FilterMatchAll](./src/FilterMatchAll.java) class. It matches if a log line contains all the terms in the filter regarless of their position.
 
 StreamFilter handles Filter Description Lines in processFilter() method while handling Line of Log Lines in processLogLine() method.
-
+processLogLine() method of [StreamFilter](./src/StreamFilter.java) utilize parallel stream to process multiple filters on a given log lines.
 
 References
 ------------
