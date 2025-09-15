@@ -35,11 +35,20 @@ Filter_ID: Filter identifier, starts with 1.
 2) When the solution encounters a Line of Log and a filter matches, 
 then it should print the following with the filter identifier of each matching filter.
 ```
-Line_Of_Log_Response::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
-<FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
-
+Line_Of_Log_Response ::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
+        <FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
 ```
+
+Solution
+--------
+
+The solution is implemented in the class `StreamFilter`.
+Filters are represented as a IFilter interface so that different filters could be added without changing the main flow (extensibility, Bridge Pattern).
+An example filter is implemented in the class `FilterMatchAll` class. It matches if a log line contains all the terms in the filter regarless of their position.
+
+StreamFilter handles Filter Description Lines in processFilter() method while handling Line of Log Lines in processLogLine() method.
 
 References
 ------------
 1. [Augmented BNF for Syntax Specifications: ABNF](https://datatracker.ietf.org/doc/html/rfc5234)
+1. [Bridge pattern](https://en.wikipedia.org/wiki/Bridge_pattern)
