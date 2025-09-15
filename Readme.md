@@ -39,10 +39,10 @@ Line_Of_Log_Response ::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
         <FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
 ```
 
-Solution Notes
+Notes
 --------
 
-The solution is implemented in the class [StreamFilter](./src/StreamFilter.java).
+This solution is implemented in the class [StreamFilter](./src/StreamFilter.java).
 Filters are represented as an [IFilter](./src/IFilter.java) interface so that different filters could be added without changing the main flow (extensibility, [Bridge pattern](https://en.wikipedia.org/wiki/Bridge_pattern)).
 An example filter is implemented in the class [FilterMatchAll](./src/FilterMatchAll.java) class. It matches if a log line contains all the terms in the filter regarless of their position.
 
