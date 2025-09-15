@@ -32,7 +32,8 @@ Filter_Description_Response::= "A:" <Filter_Terms> "; FID=" <Filter_ID>
 ```
 Filter_ID: Filter identifier, starts with 1.
 
-2) When the solution encounters a Line of Log, it should print the Line of Log as.
+2) When the solution encounters a Line of Log and a filter matches, 
+then it should print the following with the filter identifier of each matching filter.
 ```
 Line_Of_Log_Response::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
 <FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
