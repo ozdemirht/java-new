@@ -7,14 +7,14 @@ This example demonstrates the use of the Java Streaming API.
 <br>Filter Description Line
 ```
 <Filter_Description_Line> ::= 'QF:' <Filter_Line> <br>
-<Filter_Line> ::= <String> | <String> <Filter_Line>
-
+            <Filter_Line> ::= <Term> | <Term> <Filter_Line>
+                   <Term> ::= <String>
 ```
 <br>Line of Log file 
 ```
-<Line_Of_Log> ::= 'LOL:' <Line_Of_Words> <br>
-<Line_Of_Words> ::= <String> | <String> " " <Line_Of_Words>
-
+ <Line_Of_Log>  ::= 'LOL:' <Line_Of_Words> <br>
+<Words_Of_Line> ::= <Word> | <Word> " " <Words_Of_Line>
+         <Word> ::= <String> 
 ```
 As a result, the BNF of given file is as follows:
 
