@@ -39,7 +39,7 @@ Line_Of_Log_Response ::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
         <FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
 ```
 
-Solution
+Solution Notes
 --------
 
 The solution is implemented in the class `StreamFilter`.
