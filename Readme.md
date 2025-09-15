@@ -6,13 +6,13 @@ This example demonstrates the use of the Java Streaming API.
 <br>Each line contains one of the following:
 <br>Filter Description Line
 ```
-<Filter_Description_Line> ::= 'QF:' <Filter_Line> <br>
+<Filter_Description_Line> ::= 'QF:' <Filter_Line>
             <Filter_Line> ::= <Term> | <Term> <Filter_Line>
                    <Term> ::= <String>
 ```
 <br>Line of Log file 
 ```
- <Line_Of_Log>  ::= 'LOL:' <Line_Of_Words> <br>
+ <Line_Of_Log>  ::= 'LOL:' <Line_Of_Words>
 <Words_Of_Line> ::= <Word> | <Word> " " <Words_Of_Line>
          <Word> ::= <String> 
 ```
