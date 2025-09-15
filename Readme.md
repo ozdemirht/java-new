@@ -20,7 +20,6 @@ As a result, the BNF of given file is as follows:
 
 ```
 <Line_of_File> ::= <Filter_Description_Line> |  <Line_Of_Log>
-
 ```
 
 Functional Requirements
@@ -34,6 +33,10 @@ Filter_Description_Response::= "A:" <Filter_Terms> "; FID=" <Filter_ID>
 Filter_ID: Filter identifier, starts with 1.
 
 2) When the solution encounters a Line of Log, it should print the Line of Log as.
+```
+Line_Of_Log_Response::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
+<FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
 
+```
 
 
