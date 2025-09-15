@@ -54,7 +54,8 @@ StreamFilter handles Filter Description Lines in processFilter() method while ha
 leveraging parallel streams to process multiple filters on a given log line concurrently.
 
 (performance) Because Java HashSet implementation is based on Java HashMap, 
-this solution has used contains() function when checking whether a filter matches a log line.
+this solution has used contains() function when checking 
+whether a HashSet of log line contains all filter terms ([conjunction](https://en.wikipedia.org/wiki/Conjunctive_query)).
 
 
 
