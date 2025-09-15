@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.stream.Stream;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -16,8 +17,8 @@ public class Main {
                             , "LOL: Our Earth is our World, Hello"
                         };
         Stream.of(lines)
-                .map(x->aFilter.filter(x))
-                .filter(x-> x!=null)
+                .map(aFilter::filter)
+                .filter(Objects::nonNull)
                 .forEach(System.out::println);
     }
 }

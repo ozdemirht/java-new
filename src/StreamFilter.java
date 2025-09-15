@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Stream;
 
 /**
  * The StreamFilter class is responsible for processing lines of input and handling them in two ways:
@@ -7,7 +6,22 @@ import java.util.stream.Stream;
  * class are stored internally and matched against log lines based on their tokens.
  */
 public class StreamFilter {
+    /**
+     * A map associating unique integer identifiers with their corresponding filter instances.
+     * The keys represent the identifiers of the filters, while the values are instances of the {@link IFilter} interface
+     * that defines the behavior and criteria for evaluating matches against a set of terms.
+     *
+     * This collection acts as the central repository for all filters used by the {@code StreamFilter} class,
+     * enabling efficient storage and retrieval of filters for processing input lines and evaluating matches.
+     */
     Map<Integer, IFilter> filters;
+
+    /**
+     * Constructs a new instance of the StreamFilter class.
+     * The class is responsible for managing and processing filters and log lines.
+     * It initializes the internal data structure to store filters, preparing the instance
+     * for further operations such as adding filters and evaluating log lines.
+     */
     public StreamFilter(){
         filters=new HashMap<>();
     }
@@ -40,7 +54,7 @@ public class StreamFilter {
      * @return a formatted string indicating the normalized line and the identifier of the created filter
      */
     private String processFilter(String line){
-        String ret = line;
+        String ret ;
         // Extract the filter string from the line
         String normalizedLine = line.substring("QF:".length()).trim();
         //synchronized - begin
@@ -48,7 +62,7 @@ public class StreamFilter {
         IFilter aFilter = new FilterMatchAll(filterIdentifier,normalizedLine);
         filters.put(filterIdentifier,aFilter);
         //synchronized - end
-        ret = "A:"+aFilter.getTerms()+"; FID="+filterIdentifier+"";
+        ret = "A:"+aFilter.getTerms()+"; FID="+filterIdentifier;
         return ret;
     }
 
@@ -61,18 +75,15 @@ public class StreamFilter {
      *         or null if no filters matched
      */
     private String processLogOfLine(String line){
-        String ret = null;
         // Extract the normalized line from the log line
         String normalizedLine = line.substring("LOL:".length()).trim();
-        HashSet<String> lineSet = new HashSet<>();
         // Tokenize the normalized line
-        Stream.of(normalizedLine.toLowerCase().split("\s+")).forEach(lineSet::add);
+        String normalizedLine2 = normalizedLine.replaceAll("\\p{Punct}","").trim();
+        HashSet<String> lineSet = new HashSet<>(Arrays.asList(normalizedLine2.toLowerCase().split("\s+")));
         // Check if the line matches any of the filters
         List<Integer> filterIdentifiers = checkFilterMatch(lineSet);
         // Prepare response for matching filters
-        if(filterIdentifiers.size()>0)
-            ret = prepareMatchLog(normalizedLine,filterIdentifiers);
-        return ret;
+        return (!filterIdentifiers.isEmpty() ? prepareMatchLog(normalizedLine,filterIdentifiers) : null);
     }
 
     /**
@@ -83,11 +94,14 @@ public class StreamFilter {
      */
     private List<Integer> checkFilterMatch(HashSet<String> lineSet){
         List<Integer> filterIdentifiers = new ArrayList<>();
-        for(Integer key : filters.keySet())
-            if(filters.get(key).doMatch(lineSet)) filterIdentifiers.add(key);
+        filters.values()
+                .parallelStream()
+                .mapToInt(x -> { if(x.doMatch(lineSet)) return x.getFilterIdentifier(); return 0;})
+                .filter(x->x!=0)
+                .forEach(filterIdentifiers::add);
+        Collections.sort(filterIdentifiers);
         return filterIdentifiers;
     }
-
     /**
      * Prepares a response string for matching filters based on a normalized line.
      *
@@ -98,10 +112,10 @@ public class StreamFilter {
      */
     private String prepareMatchLog(String normalizedLine,List<Integer> filterIdentifiers){
         String ret = null;
-        if(filterIdentifiers.size()>0){
-            ret = "M:"+normalizedLine+"; FID="+filterIdentifiers.get(0)+"";
+        if(!filterIdentifiers.isEmpty()){
+            ret = "M:"+normalizedLine+"; FID="+filterIdentifiers.getFirst();
             for(int i=1;i<filterIdentifiers.size();i++)
-                ret += ", "+filterIdentifiers.get(i)+"";
+                ret += ", "+filterIdentifiers.get(i);
         }
         return ret;
     }

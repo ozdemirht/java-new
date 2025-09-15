@@ -53,7 +53,7 @@ class FilterMatchAllTest {
         inputSet.add("anything");
 
         // Execution and Assertion
-        assertTrue(!filter.doMatch(inputSet), "Expected doMatch to return true for empty filter string");
+        assertFalse(filter.doMatch(inputSet), "Expected doMatch to return true for empty filter string");
     }
 
     @Test
