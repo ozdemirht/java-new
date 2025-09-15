@@ -66,7 +66,7 @@ public class StreamFilter {
         String normalizedLine = line.substring("LOL:".length()).trim();
         HashSet<String> lineSet = new HashSet<>();
         // Tokenize the normalized line
-        Stream.of(normalizedLine.toLowerCase().split(" ")).forEach(lineSet::add);
+        Stream.of(normalizedLine.toLowerCase().split("\s+")).forEach(lineSet::add);
         // Check if the line matches any of the filters
         List<Integer> filterIdentifiers = checkFilterMatch(lineSet);
         // Prepare response for matching filters

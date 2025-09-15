@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.stream.Stream;
 
 /**
  * The FilterMatchAll class is an implementation of the IFilter interface.
@@ -92,6 +93,8 @@ public class FilterMatchAll implements IFilter {
         // Normalize the filter string
         String normalizeFilterString = filterString.trim().toLowerCase();
         // Tokenize the normalized filter string and store the terms in an array
-        filterTerms = normalizeFilterString.split(" ");
+        filterTerms = normalizeFilterString.split("\s+");
+        for(int i=0;i<filterTerms.length;i++) filterTerms[i] = filterTerms[i].trim();
+        //Stream.of(filterTerms).forEach(x->System.out.println("|"+x+"|"));
     }
 }
