@@ -39,4 +39,6 @@ Line_Of_Log_Response::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
 
 ```
 
-
+References
+------------
+1. [Augmented BNF for Syntax Specifications: ABNF](https://datatracker.ietf.org/doc/html/rfc5234)
