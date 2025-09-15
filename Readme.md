@@ -39,6 +39,10 @@ Line_Of_Log_Response ::= "M:" <Line_Of_Words> "; FID=" <FILTER_IDS>
         <FILTER_IDS> ::= <Integer> | <Integer> "," <FILTER_IDS>
 ```
 
+3) For QF filter to match, all the terms in the filter must be present in the given log line and comparison is case insensitive.
+4) For QF filter terms, there may be multiple whitespaces between terms.
+5) For LOL line, there may be multiple whitespaces between words and there maybe punctuation marks. These should not be considered in the comparison.
+
 Notes
 --------
 
@@ -48,6 +52,9 @@ An example filter is implemented in the class [FilterMatchAll](./src/FilterMatch
 
 StreamFilter handles Filter Description Lines in processFilter() method while handling Line of Log Lines in processLogLine() method,
 leveraging parallel streams to process multiple filters on a given log line concurrently.
+
+
+
 
 References
 ------------
