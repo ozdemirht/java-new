@@ -48,6 +48,15 @@ An example filter is implemented in the class [FilterMatchAll](./src/FilterMatch
 
 StreamFilter handles Filter Description Lines in processFilter() method while handling Line of Log Lines in processLogLine() method.
 
+```
+@startuml firstDiagram
+
+Alice -> Bob: Hello
+Bob -> Alice: Hi!
+		
+@enduml
+```
+
 References
 ------------
 1. [Augmented BNF for Syntax Specifications: ABNF](https://datatracker.ietf.org/doc/html/rfc5234)
