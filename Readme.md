@@ -57,7 +57,7 @@ leveraging parallel streams to process multiple filters on a given log line conc
 this solution has used contains() function when checking 
 whether a HashSet of log line contains all filter terms ([conjunction](https://en.wikipedia.org/wiki/Conjunctive_query)).
 
-
+![SreamFilter filter() method sequence Diagram](./docs/SequenceDiagram-1.png)
 
 References
 ------------
