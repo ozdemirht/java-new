@@ -12,7 +12,14 @@ if (Line of Log?) is (yes) then
   :filters.values.parallelStream()...;
 else if (Query Filter?) is (yes) then
   :processFilter(line);
+  :filters.add(...);
+  note right
+  Add new Filter
+  end note
 else (false)
+  note right
+  Response is NULL
+  end note
 endif
 
 if (response is not NULL?) is (yes) then
