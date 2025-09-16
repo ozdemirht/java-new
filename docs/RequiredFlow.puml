@@ -17,6 +17,7 @@ else if (Query Filter?) is (yes) then
   Add new Filter
   end note
 else (false)
+    :return response;
   note right
   Response is NULL
   end note
