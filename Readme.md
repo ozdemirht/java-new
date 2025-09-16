@@ -64,3 +64,4 @@ References
 ------------
 1. [Augmented BNF for Syntax Specifications: ABNF](https://datatracker.ietf.org/doc/html/rfc5234)
 1. [Bridge pattern](https://en.wikipedia.org/wiki/Bridge_pattern)
+1. [PlantUML](https://en.wikipedia.org/wiki/PlantUML)
