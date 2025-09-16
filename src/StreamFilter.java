@@ -40,9 +40,9 @@ public class StreamFilter {
         String ret = line;
         //System.out.println(line);
         if(line.startsWith("QF:"))
-            ret = processFilter(line);
+            ret = processFilter(line.substring("QF:".length()));
         else if(line.startsWith("LOL:"))
-            ret = processLogOfLine(line);
+            ret = processLogOfLine(line.substring("LOL:".length()));
         return ret;
     }
 
@@ -56,7 +56,7 @@ public class StreamFilter {
     private String processFilter(String line){
         String ret ;
         // Extract the filter string from the line
-        String normalizedLine = line.substring("QF:".length()).trim();
+        String normalizedLine = line.trim();
         //synchronized - begin
         int filterIdentifier = filters.size()+1;
         IFilter aFilter = new FilterMatchAll(filterIdentifier,normalizedLine);
@@ -76,8 +76,8 @@ public class StreamFilter {
      */
     private String processLogOfLine(String line){
         // Extract the normalized line from the log line
-        String normalizedLine = line.substring("LOL:".length()).trim();
-        // Tokenize the normalized line
+        String normalizedLine = line.trim();
+        // Remove punctuations and tokenize the normalized line
         String normalizedLine2 = normalizedLine.replaceAll("\\p{Punct}","").trim();
         HashSet<String> lineSet = new HashSet<>(Arrays.asList(normalizedLine2.toLowerCase().split("\s+")));
         // Check if the line matches any of the filters
