@@ -43,6 +43,9 @@ then it should print the following with the filter identifier of each matching f
 4) For QF filter terms, there may be multiple whitespaces between terms.
 5) For LOL line, there may be multiple whitespaces between words and there maybe punctuation marks. These should not be considered in the comparison.
 
+![Expected Execution Flow](./docs/RequiredFlow-Expected_Execution_Flow__Line_by_Line_processing.png?raw=true)<br>
+Figure 1. Expected Execution Flow.
+
 Notes
 --------
 
@@ -58,7 +61,7 @@ this solution has used contains() function when checking
 whether a HashSet of log line contains all filter terms ([conjunction](https://en.wikipedia.org/wiki/Conjunctive_query)).
 
 ![SreamFilter filter() method sequence Diagram](./docs/SequenceDiagram-1.png?raw=true)<br>
-Figure 1. Sequence Diagram of filter() method.
+Figure 2. Sequence Diagram of filter() method.
 
 References
 ------------
